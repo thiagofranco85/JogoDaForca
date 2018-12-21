@@ -1,0 +1,12 @@
+C:\Users\Notebook\source\repos\Forca\Forca\bin\Debug\Forca.exe.config
+C:\Users\Notebook\source\repos\Forca\Forca\bin\Debug\Forca.exe
+C:\Users\Notebook\source\repos\Forca\Forca\bin\Debug\Forca.pdb
+C:\Users\Notebook\source\repos\Forca\Forca\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Notebook\source\repos\Forca\Forca\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\Notebook\source\repos\Forca\Forca\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Notebook\source\repos\Forca\Forca\obj\Debug\Forca.csprojAssemblyReference.cache
+C:\Users\Notebook\source\repos\Forca\Forca\obj\Debug\Forca.csproj.CoreCompileInputs.cache
+C:\Users\Notebook\source\repos\Forca\Forca\obj\Debug\Forca.csproj.CopyComplete
+C:\Users\Notebook\source\repos\Forca\Forca\obj\Debug\Forca.exe
+C:\Users\Notebook\source\repos\Forca\Forca\obj\Debug\Forca.pdb
+C:\Users\Notebook\source\repos\Forca\Forca\bin\Debug\palavras.json
