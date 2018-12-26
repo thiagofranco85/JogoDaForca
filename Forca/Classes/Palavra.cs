@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,8 +9,36 @@ using System.Threading.Tasks;
 namespace Forca.Classes
 {
     public class Palavra
-    {
-        public string Termo { get; set; }
-        public string Dica { get; set; }
+    {   
+        [Key]
+        public int Id{ get; set; }
+
+        private string _Termo;
+
+        public string Termo {
+            get { return _Termo; }
+            set
+            {
+                _Termo = RemoveAcentos(value);
+            }
+        }
+        public string Dica { get; set; }         
+
+        public virtual ICollection<Jogo> Jogos { get; set; }
+
+
+
+
+        public static string RemoveAcentos(string text)
+        {
+            StringBuilder sbReturn = new StringBuilder();
+            var arrayText = text.Normalize(NormalizationForm.FormD).ToCharArray();
+            foreach (char letter in arrayText)
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(letter) != UnicodeCategory.NonSpacingMark)
+                    sbReturn.Append(letter);
+            }
+            return sbReturn.ToString();
+        }
     }
 }

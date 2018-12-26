@@ -1,7 +1,7 @@
 [
   {
     "termo": "arara",
-    "dica": "ave"
+    "dica": "voa"
   },
   {
     "termo": "fogão",
@@ -9,6 +9,18 @@
   },
   {
     "termo": "xícara",
-    "dica": "artigo do lar"
+    "dica": "cafe"
+  },
+  {
+    "termo": "tylenol",
+    "dica": "medicamento famoso"
+  },
+  {
+    "termo": "japao",
+    "dica": "país onde uma sílaba é comestivel"
+  },
+  {
+    "termo": "pablo vittar",
+    "dica": "cantora talentosa"
   }
 ]
