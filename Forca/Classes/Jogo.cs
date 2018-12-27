@@ -17,7 +17,7 @@ namespace Forca.Classes
         public int PalavraId { get; set; }
 
         [ForeignKey("PalavraId")]
-        public Palavra Palavra { get; set; }
+        public virtual Palavra Palavra { get; set; }
 
         public virtual ICollection<Palpite> Palpites { get; set; }
 

@@ -1,6 +1,8 @@
 ﻿using Forca.Classes;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,18 +11,24 @@ namespace Forca.Services
 {
     class JogoService
     {
-        private ForcaContext FContext { get; set; }
+        private ForcaContext _FContext { get; set; }
         private Jogo Jogo { get; set; }
 
         public JogoService(ForcaContext fContext, Jogo jogo)
         {
             Jogo = jogo;
-            FContext = fContext;
+            _FContext = fContext;
         }
 
         public void AdicionarTentativa()
         {
             Jogo.NumTentativa++;
+        }
+
+        public int Cadastrar()
+        {
+            _FContext.Jogo.AddOrUpdate<Jogo>();
+            return _FContext.SaveChanges();            
         }
     }
 }

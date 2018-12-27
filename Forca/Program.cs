@@ -1,4 +1,4 @@
-﻿using Forca.Classes;
+﻿using Forca.Classes; 
 using Forca.Services;
 using System;
 using System.Collections.Generic;
@@ -12,8 +12,24 @@ namespace Forca
     class Program
     {
         static void Main(string[] args)
-        { 
+        {             
             ForcaContext FContext = new ForcaContext();
+            /*
+            Palavra pal = new Palavra();
+            pal.Termo = "Ola";
+            pal.Dica = "Cumprimento";
+
+            FContext.Entry(pal).State = EntityState.Added;
+            int idPalavra = FContext.SaveChanges();
+
+            Console.WriteLine(pal.Id);
+            //update
+            pal = FContext.Palavra.Find(pal.Id); 
+            pal.Termo = "Hello";
+            FContext.Entry(pal).State = EntityState.Modified;
+            FContext.SaveChanges();
+            return;
+            */
             
             //Pega uma palavra pra iniciar o jogo
             Palavra p = PalavraService.BuscarPalavra();
@@ -22,7 +38,12 @@ namespace Forca
             pService.PopulaDatabase();           
 
             //Instancia o Jogo
-            Jogo j = new Jogo(6, p);             
+            Jogo j = new Jogo(6, p);
+
+            //Salva Jogo no banco
+            JogoService jService = new JogoService(FContext, j);
+            int jogoId = jService.Cadastrar();
+            //j.Id = jogoId;
 
             int tentativa = 1;
             //Executa um loop para contar as tentativas
@@ -59,9 +80,14 @@ namespace Forca
 
                 char letra = Console.ReadLine().ToCharArray()[0];
 
+                //Salva palpite no banco
+                Palpite palpite = new Palpite(letra.ToString(), j);
+                PalpiteService palpiteService = new PalpiteService(FContext, palpite);
+                palpiteService.cadastrar();
+
                 bool acertou = pService.VerificaAcerto(letra);                    
                 
-                JogoService jService = new JogoService(FContext, j);
+                
 
                 //Se acertou, renderiza novas lacunas
                 pService.GeraLacunas(letra);
@@ -79,7 +105,14 @@ namespace Forca
                     Console.BackgroundColor = ConsoleColor.Green;
                     Console.ForegroundColor = ConsoleColor.Black;
                     Console.WriteLine("Você Venceu! A palavra é " + pService._Palavra.Termo);
-                    break;
+
+                    //Salva vitoria no banco  
+                    j.Vitoria = true;
+                    j.NumTentativa = tentativa;
+                     
+                    jService.Cadastrar();
+
+                    return;
                 }
 
                 tentativa++;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -8,13 +9,14 @@ using System.Threading.Tasks;
 
 namespace Forca.Classes
 {
+    [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class ForcaContext : DbContext
     {
         public DbSet<Palavra> Palavra { get; set; }
         public DbSet<Jogo> Jogo { get; set; }
         public DbSet<Palpite> Palpite { get; set; }
 
-        public ForcaContext() : base("name=StringDeConexaoForca")
+        public ForcaContext() : base("name=StringDeConexaoForcaMySql")
         {
         }
 
