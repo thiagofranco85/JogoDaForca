@@ -14,36 +14,23 @@ namespace Forca
         static void Main(string[] args)
         {             
             ForcaContext FContext = new ForcaContext();
-            /*
-            Palavra pal = new Palavra();
-            pal.Termo = "Ola";
-            pal.Dica = "Cumprimento";
+            PalavraService pServiceInicio = new PalavraService(FContext);
 
-            FContext.Entry(pal).State = EntityState.Added;
-            int idPalavra = FContext.SaveChanges();
+            //Buscar palavra aleatoria
+            Palavra p = pServiceInicio.BuscarAleatorio();
 
-            Console.WriteLine(pal.Id);
-            //update
-            pal = FContext.Palavra.Find(pal.Id); 
-            pal.Termo = "Hello";
-            FContext.Entry(pal).State = EntityState.Modified;
-            FContext.SaveChanges();
-            return;
-            */
-            
-            //Pega uma palavra pra iniciar o jogo
-            Palavra p = PalavraService.BuscarPalavra();
             PalavraService pService = new PalavraService(FContext, p);
             //Se nao tiver nada no banco, popula com o palavras.json
-            pService.PopulaDatabase();           
-
+            pService.PopulaDatabase();
+            
             //Instancia o Jogo
             Jogo j = new Jogo(6, p);
+             
 
             //Salva Jogo no banco
             JogoService jService = new JogoService(FContext, j);
-            int jogoId = jService.Cadastrar();
-            //j.Id = jogoId;
+            int retorno = jService.Cadastrar();
+             
 
             int tentativa = 1;
             //Executa um loop para contar as tentativas
@@ -78,12 +65,21 @@ namespace Forca
                 //Exibe a msg pro usuario tentar
                 Console.Write("Escolha uma letra:");
 
-                char letra = Console.ReadLine().ToCharArray()[0];
+                string sLetra = Console.ReadLine();
+                char letra = Char.MinValue;
+                if ( sLetra != "" )
+                {
+                    letra = sLetra.ToCharArray()[0];
+                }
+                else
+                {
+                    Console.WriteLine("Insira alguma letra!");
+                }
 
                 //Salva palpite no banco
                 Palpite palpite = new Palpite(letra.ToString(), j);
                 PalpiteService palpiteService = new PalpiteService(FContext, palpite);
-                palpiteService.cadastrar();
+                palpiteService.Cadastrar();
 
                 bool acertou = pService.VerificaAcerto(letra);                    
                 
@@ -111,7 +107,7 @@ namespace Forca
                     j.NumTentativa = tentativa;
                      
                     jService.Cadastrar();
-
+                    Console.ReadKey();
                     return;
                 }
 

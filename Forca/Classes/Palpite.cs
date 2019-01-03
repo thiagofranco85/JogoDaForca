@@ -18,6 +18,10 @@ namespace Forca.Classes
         [ForeignKey("JogoId")]
         public virtual Jogo Jogo { get; set; }
 
+        public Palpite()
+        {
+        }
+
         public Palpite(string letra, Jogo jogo)
         {
             Letra = letra;

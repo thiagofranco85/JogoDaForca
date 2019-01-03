@@ -26,8 +26,9 @@ namespace Forca.Classes
 
         public virtual ICollection<Jogo> Jogos { get; set; }
 
-
-
+        public Palavra()
+        {
+        }
 
         public static string RemoveAcentos(string text)
         {

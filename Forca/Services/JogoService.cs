@@ -12,22 +12,22 @@ namespace Forca.Services
     class JogoService
     {
         private ForcaContext _FContext { get; set; }
-        private Jogo Jogo { get; set; }
+        private Jogo _Jogo { get; set; }
 
         public JogoService(ForcaContext fContext, Jogo jogo)
         {
-            Jogo = jogo;
+            _Jogo = jogo;
             _FContext = fContext;
         }
 
         public void AdicionarTentativa()
         {
-            Jogo.NumTentativa++;
+            _Jogo.NumTentativa++;
         }
 
         public int Cadastrar()
         {
-            _FContext.Jogo.AddOrUpdate<Jogo>();
+            _FContext.Jogo.AddOrUpdate<Jogo>(_Jogo);
             return _FContext.SaveChanges();            
         }
     }

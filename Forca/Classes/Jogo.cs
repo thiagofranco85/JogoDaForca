@@ -21,6 +21,10 @@ namespace Forca.Classes
 
         public virtual ICollection<Palpite> Palpites { get; set; }
 
+        public Jogo()
+        {
+        }
+
         public Jogo(int numChance, Palavra palavra)
         {
             NumChance = numChance;

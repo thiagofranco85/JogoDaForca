@@ -17,6 +17,14 @@ namespace Forca.Services
         public HashSet<char> _LetrasPalpites { get; private set; }
         public string PalavraParcial { get; private set; }
 
+        public PalavraService(ForcaContext fContext)
+        {
+            _FContext = fContext;
+            _Palavra = new Palavra();
+            _LetrasPalpites = new HashSet<char>();
+            PalavraParcial = GeraLacunas();
+
+        }
         public PalavraService(ForcaContext fContext, Palavra palavra)
         {
             _FContext = fContext;
@@ -25,7 +33,7 @@ namespace Forca.Services
             PalavraParcial = GeraLacunas();
         }
 
-        public static Palavra BuscarPalavra()
+        private static Palavra BuscarPalavraArquivo()
         {
            // Console.WriteLine( Path.Combine(Directory.GetCurrentDirectory(), "palavras.json") );
            // Console.ReadKey();
@@ -37,6 +45,28 @@ namespace Forca.Services
             var rand = new Random();
             var index = palavras.Skip(rand.Next(0, palavras.Count)).Take(1);
             return index.First();
+        }
+
+        public Palavra BuscarAleatorio()
+        { 
+            int minId = _FContext.Palavra.Min(x => x.Id);
+            int maxId = _FContext.Palavra.Max(x => x.Id);
+            Random rnd = new Random();
+            int random = rnd.Next(minId, maxId);
+
+            _Palavra = _FContext.Palavra.Find(random);
+            return _Palavra;
+        } 
+
+        public static Palavra BuscarAleatorio2()
+        {
+            ForcaContext forcaContext = new ForcaContext();
+            int minId = forcaContext.Palavra.Min(x => x.Id);
+            int maxId = forcaContext.Palavra.Max(x => x.Id);
+            Random rnd = new Random();
+            int random = rnd.Next(minId, maxId);
+             
+            return forcaContext.Palavra.Find(random);
         }
 
         public bool VerificaVencedor()
@@ -63,7 +93,7 @@ namespace Forca.Services
 
         public string GeraLacunas(char letra = char.MinValue )
         {
-            int qtde = _Palavra.Termo.Length;
+            int qtde = _Palavra.Termo == null ? 0 : _Palavra.Termo.Length;
             string retorno="";
 
             if( letra == char.MinValue)
@@ -131,12 +161,7 @@ namespace Forca.Services
             ICollection<Palavra> lista;
             if ( qtde == 0)
             {
-                lista = this.LeArquivoJson();
-
-                foreach(Palavra p in lista)
-                {
-                    Console.WriteLine(p.Termo);
-                }
+                lista = this.LeArquivoJson(); 
 
                 _FContext.Palavra.AddRange(lista);
                 _FContext.SaveChanges();

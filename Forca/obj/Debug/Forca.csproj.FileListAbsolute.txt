@@ -19,12 +19,12 @@ C:\Users\Notebook\source\repos\Forca\Forca\bin\Debug\MySql.Data.xml
 C:\Users\Notebook\source\repos\Forca\Forca\bin\Debug\MySql.Data.EntityFramework.xml
 C:\Users\Notebook\source\repos\Forca\Forca\bin\Debug\Newtonsoft.Json.pdb
 C:\Users\Notebook\source\repos\Forca\Forca\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Notebook\source\repos\Forca\Forca\obj\Debug\Forca.csprojAssemblyReference.cache
+C:\Users\Notebook\source\repos\Forca\Forca\obj\Debug\Forca.Migrations.Initial.resources
+C:\Users\Notebook\source\repos\Forca\Forca\obj\Debug\Forca.csproj.GenerateResource.cache
 C:\Users\Notebook\source\repos\Forca\Forca\obj\Debug\Forca.csproj.CoreCompileInputs.cache
 C:\Users\Notebook\source\repos\Forca\Forca\obj\Debug\Forca.exe.manifest
 C:\Users\Notebook\source\repos\Forca\Forca\obj\Debug\Forca.application
 C:\Users\Notebook\source\repos\Forca\Forca\obj\Debug\Forca.csproj.CopyComplete
 C:\Users\Notebook\source\repos\Forca\Forca\obj\Debug\Forca.exe
 C:\Users\Notebook\source\repos\Forca\Forca\obj\Debug\Forca.pdb
-C:\Users\Notebook\source\repos\Forca\Forca\obj\Debug\Forca.Migrations.Initial.resources
-C:\Users\Notebook\source\repos\Forca\Forca\obj\Debug\Forca.csproj.GenerateResource.cache
-C:\Users\Notebook\source\repos\Forca\Forca\obj\Debug\Forca.csprojAssemblyReference.cache

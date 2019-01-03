@@ -19,9 +19,9 @@ namespace Forca.Services
             _Palpite = Palpite;
         }
 
-        public void cadastrar()
+        public void Cadastrar()
         {
-            _FContext.Palpite.AddOrUpdate<Palpite>();
+            _FContext.Palpite.AddOrUpdate<Palpite>(_Palpite);
             _FContext.SaveChanges();
         }
     }
